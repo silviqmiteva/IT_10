@@ -2,10 +2,6 @@
     height: 100px
 }
 
-.height-40px{
-	height:40px;
-}
-
 .width-75per{
     width: 75%;
 }
@@ -20,6 +16,9 @@
 .width-5per{
     width: 5%;
 }
+.blue{
+	color:blue;
+}
 .color-orange{
     color: #ffb606;
 }
@@ -28,14 +27,10 @@
     text-decoration: underline;
 }
 
-header{
-	float:left;
-}
 .link{
 	color:white;
 	margin-top:50px;
 	margin-left:100px;
-	margin-right:10px;
 }
 
 .width-15per{
@@ -84,6 +79,12 @@ header{
     display: flex;
 }
 
+.submitBtn{
+	border:0;
+	background:transparent;
+		
+}
+
 .display-inline{
     display: inline;
 }
@@ -96,6 +97,9 @@ header{
     text-align: left;
 }
 
+.color-white{
+	color:white;
+}
 .margin-left-50px{
     margin-left: 50px;
 }
@@ -148,14 +152,6 @@ header{
 }
 .bg-white{
     background: white;
-}
-
-h3{
-	margin:0;
-}
-
-.color-white{
-	color:white;	
 }
 
 .bg-orange{

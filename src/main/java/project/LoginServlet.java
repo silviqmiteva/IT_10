@@ -14,29 +14,35 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 	User person;
 	int userID;
+	CollectionExample users;
+	
+	public void init()throws ServletException{
+		users= CollectionExample.getInstance();
+	}
+	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
-		PrintWriter out = response.getWriter();
-		person = new User(name,password);
-		CollectionExample users = new CollectionExample();
-		 if(users.checkIfUserExists(person)==true) {
+
+			String name = request.getParameter("name");
+			String password = request.getParameter("password");
+			PrintWriter out = response.getWriter();
+			person = new User(name,password);
+			if(users.checkIfUserExists(person)==true) {
 			 	userID = users.getUserID(person);
 			 	
-				HttpSession session = request.getSession();
-				session.setMaxInactiveInterval(30*60);
-				User user = users.getUserInfo(userID);
-				user.setId(userID);
-				session.removeAttribute("user");
-				session.setAttribute("user",user);	
+			 	HttpSession session = request.getSession();
+			 	person.setId(userID);
+			 	session.setAttribute("loggedUser",person);	
+				session.setAttribute("isLogUser", "yes");
+				session.setAttribute("onlyViewProfile", "null");
 				
-			 	String baseUrl = request.getContextPath() + "/profile?id=" + userID;
+			 	String baseUrl = request.getContextPath() + "/profile?id="+userID;
 			    String encodedUrl = response.encodeRedirectURL(baseUrl);
 			    response.sendRedirect(encodedUrl);
 			     
 	        }else {
 	           	out.println(String.format("There is no such a user."));
 	         }
+		
 	}
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 		HttpSession session=request.getSession();

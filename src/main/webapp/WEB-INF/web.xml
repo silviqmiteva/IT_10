@@ -10,8 +10,31 @@
   	<description></description>
   	<filter-class>project.LogFilter</filter-class>
   </filter>
+  <filter>
+  	<filter-name>ProfileFilter</filter-name>
+  	<display-name>ProfileFilter</display-name>
+  	<description></description>
+  	<filter-class>project.ProfileFilter</filter-class>
+  </filter>
   <filter-mapping>
   	<filter-name>LogFilter</filter-name>
   	<url-pattern>/LogFilter</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+  	<filter-name>ProfileFilter</filter-name>
+  	<url-pattern>/ProfileFilter</url-pattern>
+  </filter-mapping>
+  <error-page>
+  <error-code>404</error-code>
+  <location>/WEB-INF/errorPages/error404Page.jsp</location>
+</error-page>
+ <error-page>
+  <error-code>500</error-code>
+  <location>/WEB-INF/errorPages/error500Page.jsp</location>
+</error-page>
+<error-page>
+  <error-code>403</error-code>
+  <location>/WEB-INF/errorPages/error403Page.jsp</location>
+</error-page>
 </web-app>
+

@@ -21,8 +21,7 @@ public class UserServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(30*60);
-		
+	
 		Cookie cookies[] = request.getCookies();
 		boolean isCookieAvailable = false;
 		if(cookies != null ) {
@@ -40,13 +39,19 @@ public class UserServlet extends HttpServlet {
 	      }
 		
 		if(userID!=null) {
-//			CollectionExample coll = new CollectionExample();
-//			User user = coll.getUserInfo(Integer.parseInt(userID));
-//			user.setId(Integer.parseInt(userID));
-//			session.setAttribute("user",user);	
+			CollectionExample coll = new CollectionExample();
+			User user = coll.getUserInfo(Integer.parseInt(userID));
+			user.setId(Integer.parseInt(userID));
+			session.setAttribute("user",user);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
-			rd.forward(request, response);	
+			RequestDispatcher rd;
+			User loggedUser = (User)session.getAttribute("loggedUser");
+				if(loggedUser.getId()==user.getId()) {
+					rd = request.getRequestDispatcher("editProfilePage.jsp");
+				}else {
+					rd = request.getRequestDispatcher("profile.jsp");	
+				}
+				rd.forward(request, response);
 			}else {
 				response.sendRedirect("login.jsp");
 		}
@@ -71,13 +76,14 @@ public class UserServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String town = request.getParameter("town");
 		String street = request.getParameter("street");
-
-		CollectionExample coll = new CollectionExample();
-		coll.updateUserInfo(Integer.parseInt(userID),username,phone,street,town,work,address);
+		String description = request.getParameter("description");
 		
+		CollectionExample coll = new CollectionExample();
+		coll.updateUserInfo(Integer.parseInt(userID),username,phone,street,town,work,address,description,"","");
+		User user = coll.getUserInfo(Integer.parseInt(userID));
+		session.setAttribute("user",user);		
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");  
 		rd.forward(request, response);
-		}
-		
 	}
 }

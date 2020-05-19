@@ -18,24 +18,27 @@
         </header>
         </div>
         <div class="bg-gray height-967px text-align-center">
-          <div class="bg-orange height-40px text-align-left">
-        	<label>Потребител</label>
-        	<label>Работа</label>
-        	<label>Информация</label>
+          <div class="bg-orange height-40px text-align-left display-flex">
+        	<div style="width:20%">Потребител</div>
+        	<div style="width:20%">Работа</div>
+        	<div style="width:20%">Информация</div>
+        	<div style="width:10%">Имейл</div>
         	</div>
         	<div class="text-align-left">
         	<%  List<User> list = new ArrayList<User>();
-        	// show all records from collection 
+        	String isLoggedUser = (String)session.getAttribute("isLogUser"); 
+    		if(isLoggedUser.equals("null")) {
+    			session.setAttribute("isLogUser","no");
+    		}
         	list = (List<User>)request.getAttribute("list");
         	for(User u : list) {
-        	    out.println("<div><form method='post' action='profile'><input type='submit' class='width:10%' value='"+u.getName()+"'>");
-        	    out.println("<input type='hidden' name='id' value='"+u.getId()+"'>");
-        	    out.println("<label class='width:10%'>"+u.getWork()+"</label>");
-        	    out.println("<label class='width:80%'>"+u.getStreet()+"</label></div></form>");
+        	    out.println("<div><form method='post' action='users' class='display-flex'><div style='width:20%'><input type='submit' class='submitBtn blue' value='"+u.getName()+"'></div>");
+        	    out.println("<input type='hidden' name='profileId' value='"+u.getId()+"'>");
+        	    out.println("<div style='width:20%'>"+u.getWork()+"</div>");
+        	    out.println("<div style='width:20%'>"+u.getDescription()+"</div>");
+        	    out.println("<div style='width:10%'>"+u.getAdress()+"</div></div></form>");
         	}
-        	
-        	//if user is logged in show names as link to their profiles
-        	//if user is not logged and want click on user name redirect to login page. 
+        	 
         	%>
         	</div>
         </div>

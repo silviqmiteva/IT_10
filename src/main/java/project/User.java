@@ -1,17 +1,30 @@
 package project;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 public class User implements Serializable {
 
 	private String name;
 	private String password;
 	private int id;
-	private String adress;
+	private String address;
 	private String work;
 	private String phone;
 	private String town;
 	private String street;
+	private String description;
+	private String java;
+	private String html;
+	
+//	private Map<String,String> jobSkills = new HashMap<String,String>();
+//	
+//	public void addJobsSkills(String key, String value) {
+//		jobSkills.put(key, value);
+//	}
 	
 	public User() { }
 	public User(int id,String name,String pass) {
@@ -50,11 +63,11 @@ public class User implements Serializable {
 	}
 	
 	public String getAdress() {
-		return adress;
+		return address;
 	}
 	
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAdress(String address) {
+		this.address = address;
 	}
 	
 	public String getWork() {
@@ -93,6 +106,30 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [id=" + id +",name=" + name + ",password=" + password + "]";
 	}
-
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getJava() {
+		return java;
+	}
+	
+	public void setJava(String java) {
+		this.java = java;
+	}
+	
+	public String getHtml() {
+		return html;
+	}
+	
+	public void setHtml(String html) {
+		this.html = html;
+	}
+	
 	
 }

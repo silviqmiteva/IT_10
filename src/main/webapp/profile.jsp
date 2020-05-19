@@ -1,4 +1,5 @@
 <%@page import="project.User" %>
+<%@page import="project.CollectionExample" %>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -10,24 +11,30 @@
 <body class="margin-none">
     <div>
         <div class="height-100px bg-blue">
-        <header><a href="login.jsp" class="link">Изход</a>
-        <a href="index.jsp" class="color-white">Регистрация</a>
-        <form action="users" method="post"><input type="submit" class="color-white" value="Потребители"></form>
+        <header class="display-flex">
+        <div><a href="index.jsp" class="link">Изход</a></div>
+        <div class="margin-left-50px"><a href="index.jsp" class="color-white">Регистрация</a></div>
+        <div class="margin-left-50px"><form action="users" method="post"><input type="submit" class="color-white submitBtn" value="Потребители"></form></div>
         </header>
         </div>
         <div class="bg-gray height-967px text-align-center">
-  		<div>
-           	  <% User user = (User)session.getAttribute("user");  
-        		 String cookie = (String)session.getAttribute("cookie");
-           		  if(cookie.equals("notExist")){
-           		  session.setAttribute("id", user.getId());
-           		  out.print("<h3>Добре дошли </h3>"+
-           		  "<form action='profile' method='post'/> <input type='submit' name='setCookie' value='Изключи' /></form>");          	
-           		  }
-           %>
-        	</div>
-        	<form action="editProfilePage.jsp" method="post">
+  
             <div class="width-75per display-inline-block">
+           		<div>
+           	  <%
+           	  User user = (User)session.getAttribute("user"); ;
+           	  String seeProfile = (String)session.getAttribute("onlyVisitProfile");
+           	  if(seeProfile.equals("no")){
+           		String cookie = (String)session.getAttribute("cookie");
+  		 		 if(cookie.equals("notExist")){
+  		  			session.setAttribute("id", user.getId());
+  		  			out.print("<h3>Добре дошли </h3>"+
+  		  			"<form action='profile' method='post'/> <input type='submit' name='setCookie' value='Изключи' /></form>");       
+           	  }
+  		 	 }
+           	
+           %>
+        		</div>
                 <div class="display-inline">
                     <img src="woman.svg" class="width-30per margin-top-20px bg-orange margin-right-20px" />
                 </div>
@@ -36,17 +43,16 @@
                     <div class="margin-bottom-20px">
                        <div><h2>Профилна информация</h2>
                         	<labеl>Име: <% out.print(user.getName()); %></labеl></div> 
-                     <div class="float-right"><input type="submit" class="styleButton" value="Редактиране" ></div>
+                     <div class="float-right">
+           
+                     </div>
                     </div>
                     <div class="margin-bottom-20px">
                    </div>
                     <div class="margin-bottom-20px"><label>Работа: <% out.print(user.getWork()); %></label></div>
                     <div class="margin-bottom-20px">
-                        <p>Описание: Известен факт е,че читателя обръща внимание на съдържанието, което чете, а не на
-                            оформлението му. Свойството на Lorem Ipsum e, че до голяма степен има нормално разпределение
-                            на буквите и се чете
-                            по-лесно, за разлика от нормален текст на английски език като "Това е съдържание, това е
-                            съдържание". </p>
+                    <label>Описание :</label>
+                        <p ><% out.print(user.getDescription()); %> </p>
                     </div>
                 </div>
             </div>
@@ -61,16 +67,16 @@
                                 <div class="margin-top-40px margin-left-50px margin-bottom-20px">
                                     <h3>Професионални</h3>
                                 </div>
+                               
                                 <div class="margin-left-50px margin-bottom-20px"><label>Java</label></div>
-                                <div class="display-flex margin-bottom-20px">
-                                    <div class="margin-left-50px height-5px bg-blue width-40per"></div>
-                                    <div class="height-5px bg-orange width-100per"></div>
+                                <div class="margin-left-50px ">
+                                      <input type="range" min="0" max="100" value="<%out.print(user.getJava()); %>" class="width-100per" id="java" >
                                 </div>
                                 <div class="margin-left-50px margin-bottom-20px"><label>HTML</label></div>
-                                <div class="display-flex margin-bottom-20px">
-                                    <div class="margin-left-50px height-5px bg-blue width-60per"></div>
-                                    <div class="height-5px bg-orange width-100per"></div>
+                                <div class="margin-left-50px">
+                                      <input type="range" min="0" max="100" value="<% out.print(user.getHtml()); %>" class="width-100per"  >
                                 </div>
+          
 
                                 <div class="margin-left-50px margin-bottom-20px"><label>CSS</label></div>
                                 <div class="display-flex margin-bottom-20px">
@@ -145,9 +151,9 @@
                     </div>
                   
                 </div>
-                 
+                  
             </div>
-             </form>
+           
         </div>
         <div class="height-150px bg-blue"></div>
     </div>

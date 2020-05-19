@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
+	CollectionExample coll;
+	public void init() throws ServletException{
+		coll = CollectionExample.getInstance();
+	}
+	
 	public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
 		String name = request.getParameter("name");
@@ -31,6 +36,9 @@ public class RegistrationServlet extends HttpServlet {
     		CollectionExample coll = new CollectionExample();
     		if(coll.checkIfUserExists(person)==false) {
     			coll.addUser(person);
+    			//--------------
+    			coll.update(person);	
+    			//---------
     			response.sendRedirect("login.jsp");
     			out.close();
     		}else {

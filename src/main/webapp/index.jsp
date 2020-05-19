@@ -7,7 +7,9 @@
 </head>
 <body class="bg-gray">
 <div class="mainDiv" >
-	<a href="login.jsp">Вход</a>   
+<header><a href="login.jsp">Вход</a></header>
+<% 
+	session.setAttribute("isLogUser","null"); %>
 	<div class="labelStyle"><label class="title">Създаване на профил</label></div>
     <div class="formStyle">
 	<form method="POST" action="register">
