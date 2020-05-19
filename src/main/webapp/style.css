@@ -1,0 +1,52 @@
+.inputType{
+	width: 100%;
+	padding: 12px 20px; 
+	margin: 8px 0;
+	border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom:20px;
+}
+
+.formStyle{
+	background-color: orange;
+	border-radius: 5px;
+	padding: 40px 20px 0px 20px;
+}
+
+.labelStyle{
+	margin-top:20px; 
+	margin-bottom:20px
+}
+
+header{
+	text-align:left;
+}
+
+.mainDiv{
+	text-align:center; 
+	margin-left:50px; 
+	margin-right:50px;
+	margin-bottom:50px;
+}
+
+.bg-gray{
+	background-color: #f4f4f4;
+}
+
+.title{
+	font-weight: bold;
+    color: #012e5e;
+    font-size: 1.5rem;
+}
+
+.btnSubmit{
+	width: 50%;
+    background-color: #012e5e;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border:0px;
+    margin-bottom:20px;
+}
+
