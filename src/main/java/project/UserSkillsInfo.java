@@ -32,7 +32,7 @@ public class UserSkillsInfo extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(gson.toJson(user)); 
 		out.flush();
