@@ -36,9 +36,7 @@ public class RegistrationServlet extends HttpServlet {
     		CollectionExample coll = new CollectionExample();
     		if(coll.checkIfUserExists(person)==false) {
     			coll.addUser(person);
-    			//--------------
-    			coll.update(person);	
-    			//---------
+    			coll.update(person);	 
     			response.sendRedirect("login.jsp");
     			out.close();
     		}else {
