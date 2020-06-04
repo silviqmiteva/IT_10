@@ -9,9 +9,10 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="user")
+@XmlRootElement(name="users")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CollectionExample {
+	@XmlElement(name = "user")
 	private static List<User> users = null;
 	static CollectionExample instance = null;
 	static int index=1;
