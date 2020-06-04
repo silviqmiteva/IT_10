@@ -3,9 +3,6 @@ package project;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
 public class User implements Serializable {
 
 	private String name;
@@ -19,12 +16,6 @@ public class User implements Serializable {
 	private String description;
 	private String java;
 	private String html;
-	
-//	private Map<String,String> jobSkills = new HashMap<String,String>();
-//	
-//	public void addJobsSkills(String key, String value) {
-//		jobSkills.put(key, value);
-//	}
 	
 	public User() { }
 	public User(int id,String name,String pass) {
