@@ -11,16 +11,16 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 public class XMLFile {
-	public void writeToXMLFile(String file,User user) throws JAXBException{
+	public void writeToXMLFile(String file,CollectionExample users) throws JAXBException{
 	
-	    JAXBContext context = JAXBContext.newInstance(User.class);
+	    JAXBContext context = JAXBContext.newInstance(CollectionExample.class);
 	   
 	    Marshaller m = context.createMarshaller();
 	    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 	    
-	    m.marshal(user, System.out);
+	    m.marshal(users, System.out);
 	    
-	    m.marshal(user, new File(file));
+	    m.marshal(users, new File(file));
 	}
 	
 	public CollectionExample readFromXMLFile(String file) throws JAXBException,FileNotFoundException{
@@ -28,7 +28,7 @@ public class XMLFile {
 	    JAXBContext context = JAXBContext.newInstance(CollectionExample.class);
 	  
 	    Unmarshaller um = context.createUnmarshaller();
-		CollectionExample group = (CollectionExample) um.unmarshal(new FileReader(file));
+	    CollectionExample group = (CollectionExample) um.unmarshal(new FileReader(file));
 
 	    return group;
 	}
